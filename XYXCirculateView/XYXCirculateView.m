@@ -104,8 +104,29 @@
         self.visibleView.frame = self.reuseView.frame;
         //初始化scrollview的偏移量
         self.scrollView.contentOffset = CGPointMake(ScrollWidth, 0);
+        
+        if (offsetX >= ScrollWidth * 2) {
+            if (self.pageControl.currentPage == self.pageControl.numberOfPages - 1) {
+                self.pageControl.currentPage = 0;
+            }
+            else
+            {
+                self.pageControl.currentPage++;
+            }
+        }
+        else
+        {
+            if (self.pageControl.currentPage == 0) {
+                self.pageControl.currentPage = self.pageControl.numberOfPages - 1;
+            }
+            else
+            {
+                self.pageControl.currentPage--;
+            }
+        }
+        
     }
-    self.pageControl.currentPage = index;
+//    self.pageControl.currentPage = index;
 }
 //开始拖动
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
